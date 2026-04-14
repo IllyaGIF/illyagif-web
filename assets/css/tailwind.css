@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.circle {
+    background-color: #ff8d8d;
+    filter: blur(50px);
+    scale: 200%;
+}
