@@ -35,9 +35,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
   ],
-
+  
   app: {
-    baseURL: '/illyagif-web/',
+    baseURL: '/',
     head: {
       script: [
         {
@@ -47,7 +47,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-
+  
   nitro: {
     preset: 'github_pages',
   },
