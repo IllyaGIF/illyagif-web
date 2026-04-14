@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   ],
 
   app: {
-    baseURL: '/',
+    baseURL: '/illyagif-web/',
     head: {
       script: [
         {
@@ -46,5 +46,9 @@ export default defineNuxtConfig({
         },
       ],
     },
+  },
+
+  nitro: {
+    preset: 'github_pages',
   },
 })
