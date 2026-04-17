@@ -95,7 +95,8 @@ export interface IPodApiResponse {
 
 const DISCORD_USER_ID = '1348261371653128255'
 const LANYARD_URL = `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`
-const IPOD_API_URL = 'https://ipod-api.gta-emulator-x.workers.dev/api/ipod-presence'
+
+const IPOD_API_URL = 'https://proxyreaperipodapi.rf.gd/ipod-presence.php'
 
 export function fixImageURL(img?: string): string {
   if (!img) return ''
@@ -333,7 +334,6 @@ export async function getDiscordData(): Promise<DiscordResponse> {
       }
     }
   } catch {
-    // ignore iPod API errors
   }
 
   return {
@@ -377,7 +377,6 @@ export async function getCurrentActivity(): Promise<ActivityEntry> {
       return normalizeIPodActivity(ipodMusic)
     }
   } catch {
-    // ignore iPod API errors
   }
 
   if (!raw.success) {
