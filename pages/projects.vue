@@ -27,13 +27,13 @@
         </div>
 
         <div class="flex flex-col my-3 bg-neutral-950 text-white">
-          <NuxtLink to="https://sphrix.cc" target="_blank" class="flex flex-row h-max text-neutral-400 duration-500 hover:text-neutral-200 gap-4 hover:scale-[102%]">
+          <NuxtLink to="https://illyagif.xyz" target="_blank" class="flex flex-row h-max text-neutral-400 duration-500 hover:text-neutral-200 gap-4 hover:scale-[102%]">
             <div class="bg-neutral-850 p-2 rounded-2xl">
               <NuxtImg src="https://raw.githubusercontent.com/axetuz/vault/91f3ef723edb47a37ef8acaf3b4276e72004d684/axetuz/landing/VERMEULEN_Shape_17%201.png" quality="1" class="max-w-[50px] -m-1 -mr-2" />
             </div>
             <div class="flex-col justify-center mb-1">
               <p class="text-2xl">IllyaGIF.com</p>
-              <p class="text-sm">https://IllyaGIF.com</p>
+              <p class="text-sm">https://illyagif.xyz</p>
             </div>
           </NuxtLink>
 
