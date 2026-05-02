@@ -47,11 +47,6 @@ export interface MusicActivity {
   start: number
   end: number
   track_id: string
-  elapsed?: number
-  duration?: number
-  remaining?: number
-  isPlaying?: boolean
-  device?: string
 }
 
 export interface DiscordResponse {
@@ -73,30 +68,8 @@ export interface ActivityEntry {
   albumArt: string
 }
 
-export interface IPodApiResponse {
-  success: boolean
-  updatedAt?: number | null
-  music: {
-    device: string
-    service: string
-    track: string
-    artist: string
-    album: string
-    albumArt: string
-    elapsed: number
-    duration: number
-    remaining: number
-    start: number
-    end: number
-    isPlaying: boolean
-    track_id: string
-  } | null
-}
-
 const DISCORD_USER_ID = '1348261371653128255'
 const LANYARD_URL = `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`
-
-const IPOD_API_URL = 'https://proxyreaperipodapi.rf.gd/ipod-presence.php'
 
 export function fixImageURL(img?: string): string {
   if (!img) return ''
@@ -226,63 +199,12 @@ export function extractMusic(resp: LanyardResponse): MusicActivity | null {
   return null
 }
 
-export function normalizeIPodActivity(music: MusicActivity): ActivityEntry {
-  return {
-    name: music.service || 'iPod',
-    type: 2,
-    details: music.track || '',
-    state: music.artist || '',
-    service: music.service || 'iPod',
-    track: music.track || '',
-    artist: music.artist || '',
-    album: music.album || '',
-    albumArt: music.albumArt || '',
-  }
-}
-
-export async function getIPodMusic(): Promise<MusicActivity | null> {
-  const response = await fetch(IPOD_API_URL, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-store',
-  })
-
-  if (!response.ok) {
-    throw new Error(`iPod API returned status ${response.status}`)
-  }
-
-  const raw = (await response.json()) as IPodApiResponse
-
-  if (!raw.success || !raw.music) {
-    return null
-  }
-
-  return {
-    service: raw.music.service || 'iPod',
-    track: raw.music.track || '',
-    artist: raw.music.artist || '',
-    album: raw.music.album || '',
-    albumArt: raw.music.albumArt || '',
-    start: raw.music.start || 0,
-    end: raw.music.end || 0,
-    track_id: raw.music.track_id || '',
-    elapsed: raw.music.elapsed || 0,
-    duration: raw.music.duration || 0,
-    remaining: raw.music.remaining || 0,
-    isPlaying: !!raw.music.isPlaying,
-    device: raw.music.device || 'iPod touch 3.1.3',
-  }
-}
-
 export async function getDiscordData(): Promise<DiscordResponse> {
   const response = await fetch(LANYARD_URL, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    cache: 'no-store',
   })
 
   if (!response.ok) {
@@ -295,52 +217,11 @@ export async function getDiscordData(): Promise<DiscordResponse> {
     throw new Error('Lanyard returned success=false')
   }
 
-  const lanyardMusic = extractMusic(raw)
-
-  if (lanyardMusic) {
-    return {
-      success: true,
-      status: raw.data.discord_status || 'offline',
-      activities: raw.data.activities || [],
-      music: lanyardMusic,
-    }
-  }
-
-  try {
-    const ipodMusic = await getIPodMusic()
-
-    if (ipodMusic) {
-      return {
-        success: true,
-        status: ipodMusic.isPlaying ? 'online' : 'idle',
-        activities: [
-          {
-            name: ipodMusic.service || 'iPod',
-            type: 2,
-            details: ipodMusic.track || '',
-            state: ipodMusic.artist || '',
-            sync_id: ipodMusic.track_id || '',
-            timestamps: {
-              start: ipodMusic.start || 0,
-              end: ipodMusic.end || 0,
-            },
-            assets: {
-              large_image: ipodMusic.albumArt || '',
-              large_text: ipodMusic.album || '',
-            },
-          },
-        ],
-        music: ipodMusic,
-      }
-    }
-  } catch {
-  }
-
   return {
     success: true,
     status: raw.data.discord_status || 'offline',
     activities: raw.data.activities || [],
-    music: null,
+    music: extractMusic(raw),
   }
 }
 
@@ -350,7 +231,6 @@ export async function getCurrentActivity(): Promise<ActivityEntry> {
     headers: {
       'Content-Type': 'application/json',
     },
-    cache: 'no-store',
   })
 
   if (!response.ok) {
@@ -358,26 +238,6 @@ export async function getCurrentActivity(): Promise<ActivityEntry> {
   }
 
   const raw = (await response.json()) as LanyardResponse
-
-  if (raw.success) {
-    if (raw.data.spotify) {
-      return normalizeLanyardActivity(raw)
-    }
-
-    for (const act of raw.data.activities || []) {
-      if (act.name === 'Spotify' || act.name === 'Apple Music') {
-        return normalizeLanyardActivity(raw)
-      }
-    }
-  }
-
-  try {
-    const ipodMusic = await getIPodMusic()
-    if (ipodMusic) {
-      return normalizeIPodActivity(ipodMusic)
-    }
-  } catch {
-  }
 
   if (!raw.success) {
     return {
@@ -394,11 +254,4 @@ export async function getCurrentActivity(): Promise<ActivityEntry> {
   }
 
   return normalizeLanyardActivity(raw)
-}
-
-export function formatSeconds(sec?: number): string {
-  const s = Math.max(0, Math.floor(sec || 0))
-  const m = Math.floor(s / 60)
-  const r = s % 60
-  return `${m}:${String(r).padStart(2, '0')}`
 }
