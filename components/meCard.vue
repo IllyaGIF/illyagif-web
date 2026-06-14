@@ -40,30 +40,10 @@
       </div>
 
       <div class="flex flex-col w-full">
-        <div class="flex items-center gap-2 mb-1">
-          <template v-if="music && music.service">
-            <Icon :name="serviceIcon" :class="serviceColor" />
-          </template>
-          <template v-else-if="currentDiscordActivity">
-            <Icon :name="discordActivityIcon" :class="discordActivityColor" />
-          </template>
-          <template v-else>
-            <Icon :name="idleIcon" class="text-neutral-400 text-2xl" />
-          </template>
+        <div class="flex items-center gap-1 mt-2">
+          <Icon name="mdi:drag" class="text-white text-xl" />
 
-          <p class="text-neutral-500">Activity Now</p>
-        </div>
-
-        <div class="flex items-center justify-center ring-2 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
-          <p v-if="music && music.service">
-            Слушает {{ music.service }}
-          </p>
-          <p v-else-if="hasDiscordActivity">
-            {{ discordActivityTitle }}
-          </p>
-          <p v-else>
-            Сейчас нет активностей
-          </p>
+          <p class="text-neutral-500">What am I doing:</p>
         </div>
 
         <div
@@ -482,11 +462,7 @@ const discordActivityIcon = computed(() => {
   if (activity.name === 'VS CODE') return 'mdi:language-javascript'
 
   const iconMap: Record<number, string> = {
-    0: 'mdi:gamepad-variant',
-    1: 'mdi:twitch',
-    2: 'mdi:headphones',
-    3: 'mdi:television-play',
-    5: 'mdi:trophy-outline',
+    0: 'mdi:sony-playstation',
   }
 
   return iconMap[activity.type] || 'mdi:discord'
@@ -494,18 +470,14 @@ const discordActivityIcon = computed(() => {
 
 const discordActivityColor = computed(() => {
   const activity = currentDiscordActivity.value
-  if (!activity) return 'text-indigo-400 text-2xl'
+  if (!activity) return 'text-white text-2xl'
   if (activity.name === 'VS CODE') return 'text-blue-400 text-2xl'
 
   const colorMap: Record<number, string> = {
-    0: 'text-indigo-400 text-2xl',
-    1: 'text-purple-400 text-2xl',
-    2: 'text-green-400 text-2xl',
-    3: 'text-blue-400 text-2xl',
-    5: 'text-yellow-400 text-2xl',
+    0: 'text-white text-2xl',
   }
 
-  return colorMap[activity.type] || 'text-indigo-400 text-2xl'
+  return colorMap[activity.type] || 'text-white text-2xl'
 })
 
 const idleIcon = computed(() => 'streamline:sleep-remix')
