@@ -2,7 +2,9 @@
   <div class="flex flex-col items-center justify-center min-h-screen pt-20 sm:pt-0 px-4">
     <div class="flex flex-col sm:flex-row items-center justify-center w-full max-w-screen-md gap-8">
       <div class="flex flex-col text-center items-center md:items-start sm:text-left px-2 sm:px-4">
-        <MeCard class="flex md:hidden mb-2" />
+        <div class="flex md:hidden mb-2 w-[280px] h-[360px]">
+          <MeCard class="w-full h-full" />
+        </div>
 
         <div class="flex flex-col items-center sm:items-start mt-2 w-full">
           <h1 class="text-white text-lg sm:text-xl leading-6 max-w-[35ch] sm:max-w-[70ch]">
@@ -65,16 +67,18 @@
             </button>
           </p>
 
-          <transition name="expand-down">
-            <div
-              v-if="showContinue"
-              class="mt-0 max-w-[70ch] text-neutral-400 text-md leading-6"
-            >
-              Я разработчик из Кропивницкого. Изучаю системное администрирование и программирование
-              разработку приложений и веб-сайтов. Создаю проекты на C, C++, Rust, Go,
-              Python и Nuxt, а также изучаю Linux и работу серверов
-            </div>
-          </transition>
+          <div class="mt-0 max-w-[70ch] text-neutral-400 text-md leading-6">
+            <transition name="expand-down">
+              <div
+                v-if="showContinue"
+                class="mt-0 max-w-[70ch] text-neutral-400 text-md leading-6 overflow-hidden"
+              >
+                Я разработчик из Кропивницкого. Изучаю системное администрирование и программирование
+                разработку приложений и веб-сайтов. Создаю проекты на C, C++, Rust, Go, Python и Nuxt,
+                а также изучаю Linux и работу серверов
+              </div>
+            </transition>
+          </div>
 
           <Ipinfo />
         </div>
@@ -100,8 +104,8 @@
         </div>
       </div>
 
-      <div class="hidden md:flex">
-        <MeCard />
+      <div class="hidden md:flex shrink-0 w-[320px] h-[420px]">
+        <MeCard class="w-full h-full" />
       </div>
     </div>
   </div>
@@ -191,13 +195,15 @@ useHead({
   title: 'IllyaGIF — разработчик, проекты и контакты',
   meta: [
     { name: 'description', content: description },
+    { name: 'robots', content: 'index,follow,max-image-preview:large' },
     { property: 'og:title', content: 'IllyaGIF — разработчик, проекты и контакты' },
     { property: 'og:description', content: description },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://illyagif.xyz/' },
     { property: 'og:site_name', content: 'IllyaGIF' },
     { property: 'og:image', content: 'https://i.imgur.com/1nbI75I.jpeg' },
-
+    { name: 'twitter:site', content: '@IllyaGIF' },
+    { name: 'twitter:creator', content: '@IllyaGIF' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'IllyaGIF — разработчик, проекты и контакты' },
     { name: 'twitter:description', content: description },
