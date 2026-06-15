@@ -13,8 +13,10 @@
     <div class="flex" :class="{ 'blur-sm opacity-50': loading }">
       <NuxtImg
         :src="images.avatar"
+        width="120"
+        height="120"
         quality="50"
-        class="rounded-full w-30 h-30 object-cover z-1"
+        class="rounded-full w-[120px] h-[120px] object-cover z-1"
         alt="Profile picture"
         loading="lazy"
       />
@@ -40,10 +42,21 @@
       </div>
 
       <div class="flex flex-col w-full">
-        <div class="flex items-center gap-1 mt-2">
+        <div class="flex items-center gap-2 mb-1">
           <Icon name="mdi:drag" class="text-white text-xl" />
-
           <p class="text-neutral-500">What am I doing:</p>
+        </div>
+
+        <div class="flex items-center justify-center ring-2 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
+          <p v-if="music && music.service">
+            Слушает {{ music.service }}
+          </p>
+          <p v-else-if="hasDiscordActivity">
+            {{ discordActivityTitle }}
+          </p>
+          <p v-else>
+            Сейчас нет активностей
+          </p>
         </div>
 
         <div
@@ -54,6 +67,8 @@
             :src="music.albumArt"
             class="w-20 h-20 rounded-md object-cover flex-shrink-0"
             alt="Album Art"
+            width="80"
+            height="80"
           />
 
           <div class="flex flex-col justify-center flex-1 min-w-0">
@@ -336,32 +351,6 @@ const weatherIcons: Record<string, string> = {
   'мороз': 'material-symbols:severe-cold',
 }
 
-const serviceIcons: Record<string, string> = {
-  Spotify: 'mdi:spotify',
-  'Apple Music': 'simple-icons:applemusic',
-}
-
-const serviceColors: Record<string, string> = {
-  Spotify: 'text-green-500 text-2xl',
-  'Apple Music': 'text-white text-2xl',
-}
-
-const serviceIcon = computed(() => {
-  if (!music.value?.service || music.value.service === 'None') {
-    return 'streamline:sleep-remix'
-  }
-
-  return serviceIcons[music.value.service] || 'streamline:sleep-remix'
-})
-
-const serviceColor = computed(() => {
-  if (!music.value?.service || music.value.service === 'None') {
-    return 'text-neutral-400 text-2xl'
-  }
-
-  return serviceColors[music.value.service] || 'text-neutral-500 text-2xl'
-})
-
 const location = computed(() => {
   if (!weather.value) return ''
   const countryName = countryMap[weather.value.country] || weather.value.country
@@ -462,7 +451,11 @@ const discordActivityIcon = computed(() => {
   if (activity.name === 'VS CODE') return 'mdi:language-javascript'
 
   const iconMap: Record<number, string> = {
-    0: 'mdi:sony-playstation',
+    0: 'mdi:gamepad-variant',
+    1: 'mdi:twitch',
+    2: 'mdi:headphones',
+    3: 'mdi:television-play',
+    5: 'mdi:trophy-outline',
   }
 
   return iconMap[activity.type] || 'mdi:discord'
@@ -470,17 +463,19 @@ const discordActivityIcon = computed(() => {
 
 const discordActivityColor = computed(() => {
   const activity = currentDiscordActivity.value
-  if (!activity) return 'text-white text-2xl'
+  if (!activity) return 'text-indigo-400 text-2xl'
   if (activity.name === 'VS CODE') return 'text-blue-400 text-2xl'
 
   const colorMap: Record<number, string> = {
-    0: 'text-white text-2xl',
+    0: 'text-indigo-400 text-2xl',
+    1: 'text-purple-400 text-2xl',
+    2: 'text-green-400 text-2xl',
+    3: 'text-blue-400 text-2xl',
+    5: 'text-yellow-400 text-2xl',
   }
 
-  return colorMap[activity.type] || 'text-white text-2xl'
+  return colorMap[activity.type] || 'text-indigo-400 text-2xl'
 })
-
-const idleIcon = computed(() => 'streamline:sleep-remix')
 
 async function fetchDiscord() {
   try {
