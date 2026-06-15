@@ -4,13 +4,13 @@
       <div class="flex flex-col text-center items-center md:items-start sm:text-left px-2 sm:px-4">
         <MeCard class="flex md:hidden mb-2" />
 
-        <div class="flex flex-col items-center sm:items-start mt-2">
-          <p class="text-white text-lg sm:text-xl leading-6 max-w-[35ch] sm:max-w-[70ch]">
-            Привет! Я <span class="text-[#ff8d8d]">{{ ageFormatted }}</span> летний балбес из Кропивницкого
-          </p>
+        <div class="flex flex-col items-center sm:items-start mt-2 w-full">
+          <h1 class="text-white text-lg sm:text-xl leading-6 max-w-[35ch] sm:max-w-[70ch]">
+            Привет! Я <span class="text-[#ff8d8d]">IllyaGIF</span>&nbsp;<span class="text-[#ff8d8d]">{{ ageFormatted }}</span> летний developer из Кропивницкого
+          </h1>
 
           <p class="text-neutral-400 text-base sm:text-lg leading-6">
-            Я занимаюсь любительскими проектами по типу прошивок на C и сайтов
+            Я увлекаюсь любительским coding на C, C++, Rust, Go и создаю сайты на Vue
             <span
               v-for="tech in techList"
               :key="tech.name"
@@ -26,20 +26,55 @@
               href="https://github.com/illya1122/amazingnetwork"
               target="_blank"
               rel="noopener noreferrer"
-              class="items-center gap-1 inline-flex hover:scale-[102%] hover:text-white duration-500"
+              class="items-center gap-1 inline-flex !text-neutral-300 hover:scale-[102%] hover:!text-white duration-500"
             >
               простого инструмента для проверки сети
-              <Icon name="material-symbols:link-rounded" />
             </a>,
             заканчивая
-            <a
-              href="#"
-              class="items-center gap-1 inline-flex hover:scale-[102%] hover:text-white duration-500"
+
+            <span class="relative inline-block">
+              <span
+                class="cursor-default text-neutral-400 hover:text-white transition-colors duration-300"
+                @mouseenter="showTooltip"
+                @mouseleave="hideTooltip"
+              >
+                полноценным сайтом
+              </span>
+
+              <transition name="tooltip-fade">
+                <span
+                  v-if="showHere"
+                  class="absolute left-1/2 bottom-full mb-0 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900/95 px-3 py-1 text-xs text-white shadow-lg"
+                >
+                  ты уже тут
+                </span>
+              </transition>
+            </span>
+
+            <button
+              type="button"
+              @click="showContinue = !showContinue"
+              class="-ml-1 inline-flex items-center gap-1 rounded-full border border-neutral-700/60 bg-neutral-900/40 px-3 py-1 text-xs text-neutral-300 transition-all duration-300 hover:border-neutral-500 hover:bg-neutral-800/70 hover:text-white hover:scale-105"
             >
-              полноценным сайтом
-              <Icon name="material-symbols:link-rounded" />
-            </a>.
+              <span>{{ showContinue ? 'Скрыть' : 'Подробнее' }}</span>
+              <Icon
+                name="material-symbols:keyboard-arrow-down-rounded"
+                class="transition-transform duration-300"
+                :class="{ 'rotate-180': showContinue }"
+              />
+            </button>
           </p>
+
+          <transition name="expand-down">
+            <div
+              v-if="showContinue"
+              class="mt-0 max-w-[70ch] text-neutral-400 text-md leading-6"
+            >
+              Я разработчик из Кропивницкого. Изучаю системное администрирование и программирование
+              разработку приложений и веб-сайтов. Создаю проекты на C, C++, Rust, Go,
+              Python и Nuxt, а также изучаю Linux и работу серверов
+            </div>
+          </transition>
 
           <Ipinfo />
         </div>
@@ -100,6 +135,8 @@ onBeforeUnmount(() => {
   if (intervalId) clearInterval(intervalId)
 })
 
+const showContinue = ref(false)
+
 const linkCards = [
   {
     to: '/projects',
@@ -117,6 +154,16 @@ const linkCards = [
     icon: 'material-symbols:phone-in-talk-watchface-indicator',
   },
 ]
+
+const showHere = ref(false)
+
+function showTooltip() {
+  showHere.value = true
+}
+
+function hideTooltip() {
+  showHere.value = false
+}
 
 const techList = [
   { name: 'C', icon: 'logos:c' },
@@ -138,22 +185,99 @@ const techList = [
   { name: 'VS Code', icon: 'vscode-icons:file-type-vscode' },
 ]
 
-const description = computed(
-  () => `illyagif.com >> Привет! Мне ${ageFormatted.value} лет. Этот head, кстати, динамически обновляется`,
-)
+const description = 'Личный сайт IllyaGIF: проекты на C, Go, Rust, Nuxt, контакты и заметки.'
 
 useHead({
-  title: '@IllyaGIF > AboutMe',
+  title: 'IllyaGIF — разработчик, проекты и контакты',
   meta: [
     { name: 'description', content: description },
-    { property: 'og:title', content: '@IllyaGIF > AboutMe' },
+    { property: 'og:title', content: 'IllyaGIF — разработчик, проекты и контакты' },
     { property: 'og:description', content: description },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://illyagif.dpdns.org/' },
+    { property: 'og:url', content: 'https://illyagif.xyz/' },
+    { property: 'og:site_name', content: 'IllyaGIF' },
+    { property: 'og:image', content: 'https://i.imgur.com/1nbI75I.jpeg' },
+
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: '@IllyaGIF > AboutMe' },
+    { name: 'twitter:title', content: 'IllyaGIF — разработчик, проекты и контакты' },
     { name: 'twitter:description', content: description },
+    { name: 'twitter:image', content: 'https://i.imgur.com/1nbI75I.jpeg' },
   ],
-  link: [{ rel: 'canonical', href: 'https://illyagif.dpdns.org/' }],
+  link: [{ rel: 'canonical', href: 'https://illyagif.xyz/' }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'IllyaGIF',
+        url: 'https://illyagif.xyz/',
+        image: 'https://i.imgur.com/1nbI75I.jpeg',
+        sameAs: [
+          'https://github.com/illya1122/amazingnetwork',
+          'https://discord.com/users/1348261371653128255',
+        ],
+        jobTitle: 'Разработчик',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Кропивницкий',
+          addressCountry: 'UA',
+        },
+      }),
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'IllyaGIF',
+        url: 'https://illyagif.xyz/',
+      }),
+    },
+  ],
 })
 </script>
+
+<style>
+.tooltip-fade-enter-active,
+.tooltip-fade-leave-active {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.tooltip-fade-enter-from,
+.tooltip-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(6px);
+}
+
+.tooltip-fade-enter-to,
+.tooltip-fade-leave-from {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.expand-down-enter-active,
+.expand-down-leave-active {
+  overflow: hidden;
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease,
+    transform 0.45s ease,
+    margin-top 0.45s ease;
+}
+
+.expand-down-enter-from,
+.expand-down-leave-to {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  margin-top: 0;
+}
+
+.expand-down-enter-to,
+.expand-down-leave-from {
+  max-height: 180px;
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
