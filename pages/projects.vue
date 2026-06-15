@@ -20,20 +20,37 @@
         <p class="text-4xl text-white font-semibold">Мои проекты</p>
       </div>
 
-      <div class="relative max-h-[20rem] bg-neutral-950 rounded-xl ring-2 ring-neutral-800/80 duration-700 hover:scale-[101%] overflow-hidden flex my-4">
-        <div class="relative flex-1">
-          <NuxtImg src="https://i.imgur.com/MMvEe9h.jpeg" quality="10" class="w-full h-full object-cover" />
+      <div class="relative bg-neutral-950 rounded-xl ring-2 ring-neutral-800/80 duration-700 hover:scale-[101%] overflow-hidden flex flex-col md:flex-row my-4 min-h-[22rem] items-stretch">
+        <div class="relative w-full md:w-[45%] min-h-[12rem] md:min-h-[22rem]">
+          <NuxtImg 
+            src="https://i.imgur.com/MMvEe9h.jpeg" 
+            alt="Скриншот сайта IllyaGIF.com"
+            width="1200"
+            height="675"
+            sizes="(max-width: 768px) 100vw, 45vw"
+            quality="70"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            format="webp"
+          />
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-950/70 to-neutral-950" />
         </div>
 
-        <div class="flex flex-col my-3 bg-neutral-950 text-white">
-          <NuxtLink to="https://illyagif.xyz" target="_blank" class="flex flex-row h-max text-neutral-400 duration-500 hover:text-neutral-200 gap-4 hover:scale-[102%]">
-            <div class="bg-neutral-850 p-2 rounded-2xl">
-              <NuxtImg src="https://raw.githubusercontent.com/axetuz/vault/91f3ef723edb47a37ef8acaf3b4276e72004d684/axetuz/landing/VERMEULEN_Shape_17%201.png" quality="1" class="max-w-[50px] -m-1 -mr-2" />
+        <div class="flex flex-col my-3 bg-neutral-950 text-white md:flex-1 px-4">
+          <NuxtLink to="https://sphrix.cc" target="_blank" class="flex flex-row h-max text-neutral-400 duration-500 hover:text-neutral-200 gap-4 hover:scale-[102%]">
+            <div class="bg-neutral-850 p-2 rounded-2xl shrink-0">
+              <NuxtImg 
+                src="https://raw.githubusercontent.com/axetuz/vault/91f3ef723edb47a37ef8acaf3b4276e72004d684/axetuz/landing/VERMEULEN_Shape_17%201.png" 
+                alt="Logo"
+                width="50"
+                height="50"
+                quality="80"
+                class="w-[50px] h-[50px] -m-1 -mr-2"
+              />
             </div>
             <div class="flex-col justify-center mb-1">
               <p class="text-2xl">IllyaGIF.com</p>
-              <p class="text-sm">https://illyagif.xyz</p>
+              <p class="text-sm">https://IllyaGIF.com</p>
             </div>
           </NuxtLink>
 
@@ -48,7 +65,7 @@
             <p class="text-sm">latest, stable</p>
           </div>
 
-          <div class="flex flex-row gap-3">
+          <div class="flex flex-row gap-3 flex-wrap">
             <div class="text-neutral-500 mt-1 flex flex-row items-center gap-1">
               <Icon name="devicon:nuxt" />
               <p class="text-sm">nuxt 4.2.1</p>
@@ -65,15 +82,32 @@
         </div>
       </div>
 
-      <div class="relative bg-neutral-950 rounded-xl ring-2 ring-neutral-800/80 duration-700 hover:scale-[101%] overflow-hidden flex my-4">
-        <div class="relative flex-1">
-          <NuxtImg src="https://i.imgur.com/LbxsDgw.png" quality="10" class="w-full h-full object-cover" />
+      <div class="relative bg-neutral-950 rounded-xl ring-2 ring-neutral-800/80 duration-700 hover:scale-[101%] overflow-hidden flex flex-col md:flex-row my-4 min-h-[22rem] items-stretch">
+        <div class="relative w-full md:w-[45%] min-h-[12rem] md:min-h-[22rem]">
+          <NuxtImg 
+            src="https://i.imgur.com/LbxsDgw.png" 
+            alt="Скриншот AmazingNetwork"
+            width="1200"
+            height="675"
+            sizes="(max-width: 768px) 100vw, 45vw"
+            quality="70"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            format="webp"
+          />
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-950/70 to-neutral-950" />
         </div>
-        <div class="flex flex-col my-3 bg-neutral-950 text-white">
+        <div class="flex flex-col my-3 bg-neutral-950 text-white md:flex-1 px-4">
           <NuxtLink to="https://github.com/illya1122/amazingnetwork" target="_blank" class="flex flex-row h-max text-neutral-400 duration-500 hover:text-neutral-200 gap-4 hover:scale-[102%]">
-            <div class="bg-neutral-850 p-2 rounded-2xl">
-              <NuxtImg src="https://i.imgur.com/W0jpmRe.jpeg" quality="1" class="max-w-[50px] -m-1" />
+            <div class="bg-neutral-850 p-2 rounded-2xl shrink-0">
+              <NuxtImg 
+                src="https://i.imgur.com/W0jpmRe.jpeg" 
+                alt="AmazingNetwork logo"
+                width="50"
+                height="50"
+                quality="80"
+                class="w-[50px] h-[50px] -m-1"
+              />
             </div>
             <div class="flex-col justify-center mb-1">
               <p class="text-2xl">AmazingNetwork</p>
@@ -91,23 +125,39 @@
             <div class="flex animate-pulse bg-green-700 w-2 h-2 rounded-full mt-0.5" />
             <p class="text-sm">latest, stable</p>
           </div>
-                      <div class="text-neutral-500 mt-1 flex flex-row items-center gap-1">
-              <Icon name="simple-icons:rust" />
-              <p class="text-sm">Rust</p>
-            </div>
+          <div class="text-neutral-500 mt-1 flex flex-row items-center gap-1">
+            <Icon name="simple-icons:rust" />
+            <p class="text-sm">Rust</p>
+          </div>
         </div>
       </div>
 
-
-<div class="relative bg-neutral-950 rounded-xl ring-2 ring-neutral-800/80 duration-700 hover:scale-[101%] overflow-hidden flex my-4">
-        <div class="relative flex-1">
-          <NuxtImg src="https://i.imgur.com/Bqhz7jQ.png" quality="10" class="w-full h-full object-cover" />
+      <div class="relative bg-neutral-950 rounded-xl ring-2 ring-neutral-800/80 duration-700 hover:scale-[101%] overflow-hidden flex flex-col md:flex-row my-4 min-h-[22rem] items-stretch">
+        <div class="relative w-full md:w-[45%] min-h-[12rem] md:min-h-[22rem]">
+          <NuxtImg 
+            src="https://i.imgur.com/Bqhz7jQ.png" 
+            alt="Скриншот Yet Another Proxy"
+            width="1200"
+            height="675"
+            sizes="(max-width: 768px) 100vw, 45vw"
+            quality="70"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            format="webp"
+          />
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-950/70 to-neutral-950" />
         </div>
-        <div class="flex flex-col my-3 bg-neutral-950 text-white">
+        <div class="flex flex-col my-3 bg-neutral-950 text-white md:flex-1 px-4">
           <NuxtLink to="https://github.com/illya1122/yaproxy" target="_blank" class="flex flex-row h-max text-neutral-400 duration-500 hover:text-neutral-200 gap-4 hover:scale-[102%]">
-            <div class="bg-neutral-850 p-2 rounded-2xl">
-              <NuxtImg src="https://i.imgur.com/lnEEXoc.png" quality="1" class="max-w-[50px] -m-1" />
+            <div class="bg-neutral-850 p-2 rounded-2xl shrink-0">
+              <NuxtImg 
+                src="https://i.imgur.com/lnEEXoc.png" 
+                alt="YAP logo"
+                width="50"
+                height="50"
+                quality="80"
+                class="w-[50px] h-[50px] -m-1"
+              />
             </div>
             <div class="flex-col justify-center mb-1">
               <p class="text-2xl">Yet Another Proxy</p>
@@ -125,10 +175,10 @@
             <div class="flex animate-pulse bg-green-700 w-2 h-2 rounded-full mt-0.5" />
             <p class="text-sm">latest, stable</p>
           </div>
-                      <div class="text-neutral-500 mt-1 flex flex-row items-center gap-1">
-              <Icon name="simple-icons:python" />
-              <p class="text-sm">Python</p>
-            </div>
+          <div class="text-neutral-500 mt-1 flex flex-row items-center gap-1">
+            <Icon name="simple-icons:python" />
+            <p class="text-sm">Python</p>
+          </div>
         </div>
       </div>
     </div>
