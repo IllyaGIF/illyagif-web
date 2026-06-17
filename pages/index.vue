@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen pt-20 sm:pt-0 px-4">
+  <div class="flex flex-col items-center justify-center min-h-screen pt-20 sm:pt-0 px-4 pb-24 sm:pb-0">
     <div class="flex flex-col sm:flex-row items-center justify-center w-full max-w-screen-md gap-8">
       <div class="flex flex-col text-center items-center md:items-start sm:text-left px-2 sm:px-4">
-        <div class="flex md:hidden mb-2 w-[280px] h-[360px]">
-          <MeCard class="w-full h-full" />
+        <div class="flex md:hidden mb-2 w-full max-w-[320px]">
+          <MeCard class="w-full" />
         </div>
 
         <div class="flex flex-col items-center sm:items-start mt-2 w-full">
@@ -13,6 +13,9 @@
 
           <p class="text-neutral-400 text-base sm:text-lg leading-6">
             Я увлекаюсь любительским coding на C, C++, Rust, Go и создаю сайты на Vue
+
+            <br class="sm:hidden">
+
             <span
               v-for="tech in techList"
               :key="tech.name"
@@ -31,32 +34,34 @@
               class="items-center gap-1 inline-flex !text-neutral-300 hover:scale-[102%] hover:!text-white duration-500"
             >
               простого инструмента для проверки сети
-            </a>,
+            </a>
             заканчивая
+          </p>
 
-            <span class="relative inline-block">
-              <span
-                class="cursor-default text-neutral-400 hover:text-white transition-colors duration-300"
-                @mouseenter="showTooltip"
-                @mouseleave="hideTooltip"
-              >
-                полноценным сайтом
-              </span>
-
-              <transition name="tooltip-fade">
-                <span
-                  v-if="showHere"
-                  class="absolute left-1/2 bottom-full mb-0 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900/95 px-3 py-1 text-xs text-white shadow-lg"
-                >
-                  ты уже тут
-                </span>
-              </transition>
+          <div class="relative inline-block mt-0">
+            <span
+              class="cursor-default text-neutral-400 hover:text-white transition-colors duration-300"
+              @mouseenter="showTooltip"
+              @mouseleave="hideTooltip"
+            >
+              полноценным сайтом
             </span>
 
+            <transition name="tooltip-fade">
+              <span
+                v-if="showHere"
+                class="absolute left-1/2 bottom-full mb-0 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900/95 px-3 py-1 text-xs text-white shadow-lg"
+              >
+                ты уже тут
+              </span>
+            </transition>
+          </div>
+
+          <div class="mt-2 flex justify-center sm:justify-start">
             <button
               type="button"
               @click="showContinue = !showContinue"
-              class="-ml-1 inline-flex items-center gap-1 rounded-full border border-neutral-700/60 bg-neutral-900/40 px-3 py-1 text-xs text-neutral-300 transition-all duration-300 hover:border-neutral-500 hover:bg-neutral-800/70 hover:text-white hover:scale-105"
+              class="inline-flex items-center gap-1 rounded-full border border-neutral-700/60 bg-neutral-900/40 px-0 -my-1 text-xs text-neutral-300 transition-all duration-300 hover:border-neutral-500 hover:bg-neutral-800/70 hover:text-white hover:scale-105"
             >
               <span>{{ showContinue ? 'Скрыть' : 'Подробнее' }}</span>
               <Icon
@@ -65,13 +70,13 @@
                 :class="{ 'rotate-180': showContinue }"
               />
             </button>
-          </p>
+          </div>
 
-          <div class="mt-0 max-w-[70ch] text-neutral-400 text-md leading-6">
+          <div class="mt-2 max-w-[70ch] text-neutral-400 text-md leading-6">
             <transition name="expand-down">
               <div
                 v-if="showContinue"
-                class="mt-0 max-w-[70ch] text-neutral-400 text-md leading-6 overflow-hidden"
+                class="max-w-[70ch] text-neutral-400 text-md leading-6 overflow-hidden"
               >
                 Я разработчик из Кропивницкого. Изучаю системное администрирование и программирование
                 разработку приложений и веб-сайтов. Создаю проекты на C, C++, Rust, Go, Python и Nuxt,
@@ -84,17 +89,18 @@
         </div>
 
         <div
-          class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-8 md:gap-x-3 gap-y-7 w-full sm:w-max max-w-xl sm:max-w-3xl justify-center items-center mx-auto text-white font-semibold"
+        
+          class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-8 md:gap-x-3 gap-y-5 w-full sm:w-max max-w-xl sm:max-w-3xl justify-center items-center mx-auto text-white font-semibold"
         >
           <NuxtLink
             v-for="card in linkCards"
             :key="card.to"
             :to="card.to"
-            class="grid px-5 py-2 h-full rounded-xl ring-2 ring-neutral-700/40 hover:scale-[103%] transition duration-500"
+            class="grid px-5 py-2 h-full rounded-xl ring-1 ring-neutral-700/40 hover:scale-[103%] transition duration-500"
           >
             <div>
               <div class="flex text-xl">
-                <div class="flex rounded-md ring-2 ring-neutral-700/50 mr-3 p-1.5 h-max">
+                <div class="flex rounded-md ring-1 ring-neutral-700/50 mr-3 p-1.5 h-max">
                   <Icon class="text-1xl" :name="card.icon" />
                 </div>
                 <p>{{ card.title }}</p>
@@ -104,8 +110,8 @@
         </div>
       </div>
 
-      <div class="hidden md:flex shrink-0 w-[320px] h-[420px]">
-        <MeCard class="w-full h-full" />
+      <div class="hidden md:flex shrink-0 w-full max-w-[320px]">
+        <MeCard class="w-full" />
       </div>
     </div>
   </div>
