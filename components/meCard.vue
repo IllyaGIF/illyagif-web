@@ -1,5 +1,5 @@
 <template>
-  <div class="ring-2 ring-neutral-700/30 p-3 rounded-xl flex flex-col items-start min-w-[300px] w-full max-w-[300px] overflow-hidden relative">
+  <div class="relative w-full max-w-[320px] rounded-xl ring-1 ring-neutral-700/30 p-3 flex flex-col items-start overflow-hidden">
     <div
       class="absolute top-0 left-0 w-full h-[120px] rounded-t-xl overflow-hidden pointer-events-none"
       :class="{ 'blur-sm opacity-50': loading }"
@@ -47,21 +47,16 @@
           <p class="text-neutral-500">What am I doing:</p>
         </div>
 
-        <div class="flex items-center justify-center ring-2 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
-          <p v-if="music && music.service">
-            Слушает {{ music.service }}
-          </p>
-          <p v-else-if="hasDiscordActivity">
-            {{ discordActivityTitle }}
-          </p>
-          <p v-else>
-            Сейчас нет активностей
-          </p>
+        <div
+          v-if="showStatusPill"
+          class="flex items-center justify-center ring-1 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500"
+        >
+          <p>Сейчас нет активностей</p>
         </div>
 
         <div
           v-if="music && music.service"
-          class="flex items-center gap-3 ring-2 ring-neutral-900 rounded-md p-2 mt-2 w-full min-w-0 overflow-hidden hover:scale-[102%] transition duration-300"
+          class="flex items-center gap-3 ring-1 ring-neutral-900 rounded-md p-2 mt-2 w-full min-w-0 overflow-hidden hover:scale-[102%] transition duration-300"
         >
           <img
             :src="music.albumArt"
@@ -71,7 +66,7 @@
             height="80"
           />
 
-          <div class="flex flex-col justify-center flex-1 min-w-0">
+          <div class="flex flex-col justify-between flex-1 min-w-0 h-full py-1">
             <div ref="trackBox" class="w-full min-w-0 overflow-hidden">
               <p v-if="!shouldMarqueeTrack" class="text-white font-bold truncate">
                 {{ music.track }}
@@ -120,14 +115,14 @@
 
         <div
           v-else-if="currentDiscordActivity"
-          class="flex items-center gap-3 ring-2 ring-neutral-900 rounded-md p-2 mt-2 w-full min-w-0 overflow-hidden hover:scale-[102%] transition duration-300"
+          class="flex items-center gap-3 ring-1 ring-neutral-900 rounded-md p-2 mt-2 w-full min-w-0 overflow-hidden hover:scale-[102%] transition duration-300"
         >
           <div class="flex-shrink-0 w-12 h-12 rounded-md bg-neutral-900 flex items-center justify-center">
             <Icon :name="discordActivityIcon" :class="discordActivityColor" />
           </div>
 
-          <div class="flex flex-col justify-center flex-1 min-w-0">
-            <p class="text-white font-bold truncate">
+          <div class="flex flex-col justify-center flex-1 min-w-0 ">
+            <p class="text-white font-bold truncate ">
               {{ discordActivityTitle }}
             </p>
             <p class="text-neutral-400 text-sm truncate">
@@ -143,7 +138,7 @@
           <p class="text-neutral-500">Weather:</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center ring-2 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
+        <div class="flex flex-col items-center justify-center ring-1 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
           <div class="flex items-center gap-1">
             <Icon name="material-symbols:location-on-outline-rounded" class="text-neutral-500" />
             <p>{{ location }}</p>
@@ -162,7 +157,7 @@
           <p class="text-neutral-500">Weather:</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center ring-2 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
+        <div class="flex flex-col items-center justify-center ring-1 ring-neutral-900 rounded-md p-1 my-1 hover:scale-[102%] text-neutral-500 hover:text-neutral-400 duration-500">
           <div class="flex gap-1">
             <p>Данные не найдены</p>
           </div>
@@ -403,8 +398,8 @@ const currentDiscordActivity = computed(() => {
   return null
 })
 
-const hasDiscordActivity = computed(() => {
-  return !!currentDiscordActivity.value || !!music.value
+const showStatusPill = computed(() => {
+  return !music.value && !currentDiscordActivity.value
 })
 
 const discordActivityTitle = computed(() => {
@@ -504,7 +499,7 @@ onMounted(async () => {
     loading.value = false
   }
 
-  discordInterval = setInterval(fetchDiscord, 5000)
+  discordInterval = setInterval(fetchDiscord, 1000)
   weatherInterval = setInterval(fetchWeatherData, 10 * 60 * 1000)
 
   updateMarqueeState()
