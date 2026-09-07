@@ -1,7 +1,7 @@
 <template>
   <main class="onegram-page">
     <button class="language-button" type="button" @click="toggleLanguage">
-      {{ language === 'en' ? 'По-русски, пожалуйста' : 'In English, please' }}
+      {{ language === 'en' ? 'По русски, пожалуйста' : 'In English, please' }}
     </button>
 
     <article class="onegram-content">
@@ -41,7 +41,7 @@
           </p>
 
           <p>
-            Around 85% of the main Onegram functionality is now implemented
+            Around 90% of the main Onegram functionality is now implemented
             and working on iOS 4.3.
           </p>
 
@@ -233,7 +233,7 @@
           <h2>iOS 4</h2>
 
           <p>
-            Самая большая часть этого релиза — полноценный порт Onegram на
+            Самая большая часть этого релиза это полноценный порт Onegram на
             iOS 4.3.
           </p>
 
@@ -245,7 +245,7 @@
           </p>
 
           <p>
-            Сейчас около 85% основной функциональности Onegram уже реализовано
+            Сейчас около 90% основной функциональности Onegram уже реализовано
             и работает на iOS 4.3.
           </p>
 
@@ -265,7 +265,7 @@
           </ul>
 
           <p>
-            Onegram теперь действительно запускает современный ARC-код и
+            Onegram теперь действительно запускает современный ARC код и
             основной стек звонков на iPhone 4 с iOS 4.3.
           </p>
         </section>
@@ -375,7 +375,7 @@
           <h2>Совместимость</h2>
 
           <p>
-            Было переписано большое количество compatibility-кода для UIKit,
+            Было переписано большое количество compatibility кода для UIKit,
             Objective-C++, C++, CoreImage, GLKit, MapKit, GCD, libtgvoip и
             WebRTC.
           </p>
@@ -402,7 +402,7 @@
           </p>
 
           <p>
-            Порт на iOS 4 завершён примерно на 85%. Видеокружки пока остаются
+            Порт на iOS 4 завершён примерно на 90%. Видеокружки пока остаются
             одним из главных ограничений на iOS 4.
           </p>
 
