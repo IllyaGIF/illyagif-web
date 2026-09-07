@@ -117,7 +117,7 @@
           </ul>
 
           <p>
-            Onegram now actually runs modern ARC-based code and the main
+            Onegram now actually runs modern ARC based code and the main
             calling stack on an iPhone 4 running iOS 4.3.
           </p>
         </section>
@@ -295,7 +295,7 @@
 
         <section>
           <p class="lead">
-            Onegram — неофициальный клиент Telegram, созданный для того, чтобы
+            Onegram неофициальный клиент Telegram, созданный для того, чтобы
             вернуть современные возможности Telegram на старые устройства с iOS.
           </p>
         </section>
@@ -325,7 +325,7 @@
           <h2>Версия 1.0</h2>
 
           <p>
-            Версия 1.0 — самое большое обновление Onegram на данный момент.
+            Версия 1.0 самое большое обновление Onegram на данный момент.
             Клиент наконец дошёл до состояния, когда им можно нормально
             пользоваться на старых устройствах. Значительно улучшены
             стабильность, производительность, сообщения, медиа и совместимость.
