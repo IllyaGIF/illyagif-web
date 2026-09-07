@@ -4,18 +4,74 @@
       {{ language === 'en' ? 'По русски, пожалуйста' : 'In English, please' }}
     </button>
 
+    <button
+      class="scroll-button"
+      type="button"
+      :aria-label="language === 'en' ? 'Go to download' : 'Перейти к скачиванию'"
+      @click="scrollToDownload"
+    >
+      ↓
+    </button>
+
     <article class="onegram-content">
       <template v-if="language === 'en'">
         <header class="hero">
           <h1>Onegram</h1>
-          <p class="version">Version 1.0</p>
+          <p class="version">Version {{ latestVersion }}</p>
         </header>
+
+        <div class="screenshots">
+          <div class="screenshots-track">
+            <div class="screenshots-group">
+              <img src="/1.jpg" alt="Onegram screenshot 1">
+              <img src="/2.jpg" alt="Onegram screenshot 2">
+              <img src="/3.jpg" alt="Onegram screenshot 3">
+              <img src="/4.jpg" alt="Onegram screenshot 4">
+              <img src="/5.jpg" alt="Onegram screenshot 5">
+              <img src="/6.jpg" alt="Onegram screenshot 6">
+            </div>
+
+            <div class="screenshots-group" aria-hidden="true">
+              <img src="/1.jpg" alt="">
+              <img src="/2.jpg" alt="">
+              <img src="/3.jpg" alt="">
+              <img src="/4.jpg" alt="">
+              <img src="/5.jpg" alt="">
+              <img src="/6.jpg" alt="">
+            </div>
+          </div>
+        </div>
 
         <section>
           <p class="lead">
             Onegram is an unofficial Telegram client built to bring modern
             Telegram functionality back to legacy iOS devices.
           </p>
+        </section>
+
+        <section class="release">
+          <h2>Version 1.1</h2>
+
+          <p>
+            Onegram 1.1 focuses on fixing long-standing interface issues and
+            improving the experience on iPad.
+          </p>
+
+          <ul>
+            <li>Fixed reactions</li>
+            <li>Fixed misplaced menus on iPad</li>
+            <li>Fixed user nickname colors</li>
+            <li>Fixed group information screen</li>
+            <li>Fixed video circles on iPad</li>
+            <li>Finally fixed music playback on iPad</li>
+            <li>Fixed horizontally stretched static messages</li>
+          </ul>
+        </section>
+
+        <div class="release-divider"></div>
+
+        <section class="release release-old">
+          <h2>Version 1.0</h2>
 
           <p>
             Version 1.0 is the biggest Onegram update so far. The client has
@@ -41,7 +97,7 @@
           </p>
 
           <p>
-            Around 90% of the main Onegram functionality is now implemented
+            Around 85% of the main Onegram functionality is now implemented
             and working on iOS 4.3.
           </p>
 
@@ -124,7 +180,7 @@
             <li>Fixed loading of old messages</li>
             <li>Reworked message history pagination</li>
             <li>Fixed history loading in large chats and channels</li>
-            <li>Fixed the jump-to-unread button crash</li>
+            <li>Fixed the jump to unread button crash</li>
             <li>Added handling for damaged data from old databases</li>
             <li>Reduced unnecessary message list reloads</li>
           </ul>
@@ -212,17 +268,64 @@
       <template v-else>
         <header class="hero">
           <h1>Onegram</h1>
-          <p class="version">Версия 1.0</p>
+          <p class="version">Версия {{ latestVersion }}</p>
         </header>
+
+        <div class="screenshots">
+          <div class="screenshots-track">
+            <div class="screenshots-group">
+              <img src="/1.jpg" alt="Скриншот Onegram 1">
+              <img src="/2.jpg" alt="Скриншот Onegram 2">
+              <img src="/3.jpg" alt="Скриншот Onegram 3">
+              <img src="/4.jpg" alt="Скриншот Onegram 4">
+              <img src="/5.jpg" alt="Скриншот Onegram 5">
+              <img src="/6.jpg" alt="Скриншот Onegram 6">
+            </div>
+
+            <div class="screenshots-group" aria-hidden="true">
+              <img src="/1.jpg" alt="">
+              <img src="/2.jpg" alt="">
+              <img src="/3.jpg" alt="">
+              <img src="/4.jpg" alt="">
+              <img src="/5.jpg" alt="">
+              <img src="/6.jpg" alt="">
+            </div>
+          </div>
+        </div>
 
         <section>
           <p class="lead">
-            Onegram неофициальный клиент Telegram, созданный для того, чтобы
+            Onegram — неофициальный клиент Telegram, созданный для того, чтобы
             вернуть современные возможности Telegram на старые устройства с iOS.
           </p>
+        </section>
+
+        <section class="release">
+          <h2>Версия 1.1</h2>
 
           <p>
-            Версия 1.0 самое большое обновление Onegram на данный момент.
+            Onegram 1.1 в основном посвящён исправлению накопившихся проблем
+            интерфейса и улучшению работы на iPad.
+          </p>
+
+          <ul>
+            <li>Исправлены реакции</li>
+            <li>Исправлено расположение меню на iPad</li>
+            <li>Исправлены цвета ников пользователей</li>
+            <li>Исправлен экран информации о группе</li>
+            <li>Исправлены видеокружки на iPad</li>
+            <li>Наконец исправлено воспроизведение музыки на iPad</li>
+            <li>Исправлены статично растянутые по горизонтали сообщения</li>
+          </ul>
+        </section>
+
+        <div class="release-divider"></div>
+
+        <section class="release release-old">
+          <h2>Версия 1.0</h2>
+
+          <p>
+            Версия 1.0 — самое большое обновление Onegram на данный момент.
             Клиент наконец дошёл до состояния, когда им можно нормально
             пользоваться на старых устройствах. Значительно улучшены
             стабильность, производительность, сообщения, медиа и совместимость.
@@ -233,7 +336,7 @@
           <h2>iOS 4</h2>
 
           <p>
-            Самая большая часть этого релиза это полноценный порт Onegram на
+            Самая большая часть этого релиза — полноценный порт Onegram на
             iOS 4.3.
           </p>
 
@@ -245,7 +348,7 @@
           </p>
 
           <p>
-            Сейчас около 90% основной функциональности Onegram уже реализовано
+            Сейчас около 85% основной функциональности Onegram уже реализовано
             и работает на iOS 4.3.
           </p>
 
@@ -256,10 +359,10 @@
             <li>Основной C++ код перенесён на старый libstdc++</li>
             <li>libtgvoip переделан для iOS 4.3</li>
             <li>TgVoipWebrtc портирован на iOS 4.3</li>
-            <li>Поддержка WebRTC-ядра звонков на iOS 4</li>
+            <li>Поддержка WebRTC ядра звонков на iOS 4</li>
             <li>Совместимость со старым GCD и libdispatch</li>
             <li>Совместимость UIKit с API, отсутствующими в iOS 4</li>
-            <li>Fallback-реализации CoreImage</li>
+            <li>Fallback реализации CoreImage</li>
             <li>Исправлена совместимость MapKit</li>
             <li>Onegram может работать без GLKit там, где его нет</li>
           </ul>
@@ -292,7 +395,7 @@
 
           <ul>
             <li>Уменьшено количество лишних обращений к базе данных</li>
-            <li>Тяжёлые операции переделаны на batch-запросы</li>
+            <li>Тяжёлые операции переделаны на batch запросы</li>
             <li>Уменьшено количество лишних запросов при загрузке чатов</li>
             <li>Снижена нагрузка на процессор при загрузке списка чатов</li>
             <li>Ускорено переключение между папками</li>
@@ -354,8 +457,13 @@
             <li>Переработана загрузка и обработка изображений</li>
             <li>Улучшена асинхронная загрузка медиа</li>
             <li>Исправлена загрузка и обработка видео на iOS 4</li>
-            <li>Улучшена стабильность медиа на устройствах с малым объёмом памяти</li>
-            <li>Переключение между голосовым сообщением и видеокружком теперь работает</li>
+            <li>
+              Улучшена стабильность медиа на устройствах с малым объёмом памяти
+            </li>
+            <li>
+              Переключение между голосовым сообщением и видеокружком теперь
+              работает
+            </li>
           </ul>
         </section>
 
@@ -367,7 +475,7 @@
             <li>Исправлена клавиатура на iOS 7</li>
             <li>Исправлено наложение Send и кнопки записи на iOS 4–6</li>
             <li>Исправлено несколько проблем с навигацией на iOS 4</li>
-            <li>Добавлены аналоги новых UI-элементов, отсутствующих в iOS 4</li>
+            <li>Добавлены аналоги новых UI элементов, отсутствующих в iOS 4</li>
           </ul>
         </section>
 
@@ -396,30 +504,31 @@
           <h2>Текущее состояние</h2>
 
           <p>
-            Onegram уже можно использовать как обычный Telegram-клиент на
+            Onegram уже можно использовать как обычный Telegram клиент на
             старых устройствах, хотя некоторые баги и краши всё ещё могут
             оставаться.
           </p>
 
           <p>
-            Порт на iOS 4 завершён примерно на 90%. Видеокружки пока остаются
+            Порт на iOS 4 завершён примерно на 85%. Видеокружки пока остаются
             одним из главных ограничений на iOS 4.
           </p>
 
           <p>
             Разработка продолжается с упором на стабильность,
             производительность и удаление оставшихся зависимостей от API и
-            runtime-символов, появившихся после iOS 4.
+            runtime символов, появившихся после iOS 4.
           </p>
         </section>
       </template>
 
-      <footer class="download">
-        <a
-          href="https://github.com/IllyaGIF/Onegram/releases/download/1.0/Onegram.ipa"
-          class="download-button"
-        >
-          {{ language === 'en' ? 'Download Onegram 1.0' : 'Скачать Onegram 1.0' }}
+      <footer ref="downloadSection" class="download">
+        <a :href="downloadUrl" class="download-button">
+          {{
+            language === 'en'
+              ? `Download Onegram ${latestVersion}`
+              : `Скачать Onegram ${latestVersion}`
+          }}
         </a>
       </footer>
     </article>
@@ -427,16 +536,57 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const language = ref('en')
+const downloadSection = ref(null)
+
+const latestVersion = ref('1.1')
+
+const downloadUrl = ref(
+  'https://github.com/IllyaGIF/Onegram/releases/latest/download/Onegram.ipa'
+)
 
 const toggleLanguage = () => {
   language.value = language.value === 'en' ? 'ru' : 'en'
 }
 
-useHead({
-  title: 'Onegram 1.0 — IllyaGIF',
+const scrollToDownload = () => {
+  downloadSection.value?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  })
+}
+
+onMounted(async () => {
+  try {
+    const response = await fetch(
+      'https://api.github.com/repos/IllyaGIF/Onegram/releases/latest'
+    )
+
+    if (!response.ok) {
+      return
+    }
+
+    const release = await response.json()
+
+    if (release.tag_name) {
+      latestVersion.value = release.tag_name.replace(/^v/i, '')
+    }
+
+    const ipa = release.assets?.find(
+      asset => asset.name.toLowerCase() === 'onegram.ipa'
+    )
+
+    if (ipa?.browser_download_url) {
+      downloadUrl.value = ipa.browser_download_url
+    }
+  } catch {
+  }
+})
+
+useHead(() => ({
+  title: `Onegram ${latestVersion.value} — IllyaGIF`,
   meta: [
     {
       name: 'description',
@@ -444,15 +594,18 @@ useHead({
         'Onegram is an unofficial Telegram client for legacy iOS devices, supporting iOS 4.3 through iOS 10.'
     }
   ]
-})
+}))
 </script>
 
 <style scoped>
 .onegram-page {
   min-height: 100vh;
   box-sizing: border-box;
+  overflow-x: hidden;
+
   background: #000;
   color: #fff;
+
   padding: 128px 48px 120px;
 }
 
@@ -479,6 +632,7 @@ useHead({
   font-size: 15px;
 
   cursor: pointer;
+
   transition: color 160ms ease;
 }
 
@@ -486,13 +640,60 @@ useHead({
   color: #fff;
 }
 
+.scroll-button {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+
+  background: rgba(20, 20, 20, 0.78);
+  color: #fff;
+
+  font: inherit;
+  font-size: 27px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.scroll-button:hover {
+  transform: translateY(4px);
+
+  background: rgba(40, 40, 40, 0.9);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.scroll-button:active {
+  transform: translateY(6px) scale(0.96);
+}
+
 .hero {
   text-align: center;
-  margin-bottom: 120px;
+  margin-bottom: 72px;
 }
 
 .hero h1 {
   margin: 0;
+
   font-size: clamp(64px, 10vw, 112px);
   font-weight: 700;
   letter-spacing: -0.06em;
@@ -501,8 +702,106 @@ useHead({
 
 .version {
   margin: 24px 0 0;
+
   font-size: 18px;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.screenshots {
+  position: relative;
+
+  width: 100vw;
+  margin-left: 50%;
+  margin-bottom: 110px;
+
+  transform: translateX(-50%);
+
+  overflow: hidden;
+}
+
+.screenshots::before,
+.screenshots::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+
+  width: 90px;
+
+  pointer-events: none;
+}
+
+.screenshots::before {
+  left: 0;
+
+  background: linear-gradient(
+    to right,
+    #000 0%,
+    rgba(0, 0, 0, 0.85) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.screenshots::after {
+  right: 0;
+
+  background: linear-gradient(
+    to left,
+    #000 0%,
+    rgba(0, 0, 0, 0.85) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.screenshots-track {
+  display: flex;
+  width: max-content;
+
+  will-change: transform;
+
+  animation: screenshots-scroll 34s linear infinite;
+}
+
+.screenshots:hover .screenshots-track {
+  animation-play-state: paused;
+}
+
+.screenshots-group {
+  display: flex;
+  flex-shrink: 0;
+
+  gap: 18px;
+  padding-right: 18px;
+}
+
+.screenshots img {
+  display: block;
+  flex: 0 0 auto;
+
+  width: auto;
+  height: clamp(260px, 38vw, 430px);
+
+  border-radius: 18px;
+
+  object-fit: cover;
+
+  transition: transform 220ms ease;
+}
+
+.screenshots img:hover {
+  transform: scale(1.025);
+}
+
+@keyframes screenshots-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 section {
@@ -511,9 +810,27 @@ section {
 
 section h2 {
   margin: 0 0 32px;
+
   font-size: clamp(30px, 4vw, 42px);
   font-weight: 600;
   letter-spacing: -0.035em;
+}
+
+.release h2 {
+  font-size: clamp(36px, 5vw, 52px);
+}
+
+.release-divider {
+  width: 100%;
+  height: 1px;
+
+  margin: 8px 0 96px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.release-old {
+  margin-bottom: 80px;
 }
 
 p,
@@ -544,13 +861,16 @@ li {
 .performance {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
   gap: 24px;
+
   margin: 48px 0;
 }
 
 .performance div {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
@@ -568,7 +888,9 @@ li {
 .download {
   display: flex;
   justify-content: center;
-  padding-top: 48px;
+
+  padding-top: 72px;
+  scroll-margin-top: 80px;
 }
 
 .download-button,
@@ -581,12 +903,14 @@ li {
   padding: 0 36px;
 
   border-radius: 999px;
+
   background: #fff !important;
 
   color: #000 !important;
   -webkit-text-fill-color: #000;
 
   text-decoration: none !important;
+
   font-size: 17px;
   font-weight: 600;
 
@@ -598,6 +922,7 @@ li {
 .download-button:hover {
   color: #000 !important;
   -webkit-text-fill-color: #000;
+
   transform: scale(1.04);
   opacity: 0.9;
 }
@@ -613,16 +938,58 @@ li {
 
   .language-button {
     position: absolute;
+
     top: 24px;
     left: 24px;
+
     font-size: 14px;
   }
 
+  .scroll-button {
+    right: 20px;
+    bottom: 20px;
+
+    width: 52px;
+    height: 52px;
+
+    font-size: 24px;
+  }
+
   .hero {
-    margin-bottom: 88px;
+    margin-bottom: 56px;
+  }
+
+  .screenshots {
+    margin-bottom: 80px;
+  }
+
+  .screenshots::before,
+  .screenshots::after {
+    width: 35px;
+  }
+
+  .screenshots-track {
+    animation-duration: 28s;
+  }
+
+  .screenshots-group {
+    gap: 12px;
+    padding-right: 12px;
+  }
+
+  .screenshots img {
+    height: min(46vh, 380px);
+
+    max-width: calc(100vw - 40px);
+
+    border-radius: 16px;
   }
 
   section {
+    margin-bottom: 72px;
+  }
+
+  .release-divider {
     margin-bottom: 72px;
   }
 
@@ -633,11 +1000,22 @@ li {
 
   .performance {
     grid-template-columns: 1fr;
+
     gap: 32px;
+  }
+
+  .download {
+    padding-top: 48px;
   }
 
   .download-button {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screenshots-track {
+    animation: none;
   }
 }
 </style>
