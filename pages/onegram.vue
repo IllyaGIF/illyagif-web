@@ -50,6 +50,94 @@
         </section>
 
         <section class="release">
+          <h2>Version 1.2</h2>
+
+          <p>
+            A major update focused on reactions, new ways to bypass network
+            restrictions, improved Unicode and emoji support, and a large
+            number of interface, performance and stability fixes. Onegram now
+            also fully supports iOS 10.
+          </p>
+
+          <ul>
+            <li>Fixed sending messages on behalf of groups and channels</li>
+            <li>Fixed message author display in comments and groups</li>
+            <li>Fixed reaction loading in channels</li>
+            <li>Fixed real-time reaction updates</li>
+            <li>Fixed crashes related to reactions</li>
+            <li>Fixed a crash caused by gesture recognizer delegates</li>
+            <li>Fixed unread counters for muted chats</li>
+            <li>Muted chats are no longer included in the red Chats counter or app badge</li>
+            <li>Fixed folder and archive counters for muted chats</li>
+            <li>Fixed crashes and issues with forums and topics on older iOS versions</li>
+            <li>Fixed TL parsing issues with modern Telegram responses</li>
+            <li>Significantly improved database performance on older devices</li>
+            <li>Reduced long freezes while loading channels and message history</li>
+            <li>Fixed several interface issues on iPad</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Unicode and emoji</h2>
+
+          <p>
+            Onegram now includes modern Unicode and emoji support for old
+            versions of iOS.
+          </p>
+
+          <ul>
+            <li>Added modern Unicode support on iOS 4–6</li>
+            <li>Added additional fonts for missing Unicode characters</li>
+            <li>Added modern emoji unavailable on older iOS versions</li>
+            <li>Added support for ZWJ emoji, flags, skin tones and compound emoji</li>
+            <li>Fixed squares instead of modern emoji in the chat list</li>
+            <li>Fixed missing characters in chat and group titles</li>
+            <li>Fixed Unicode rendering in user and group information screens</li>
+            <li>Fixed short names being clipped in the chat list</li>
+          </ul>
+
+          <p>
+            A new emoji setting has also been added to Appearance with three
+            modes: <strong>Stock Only</strong>, <strong>New Only</strong> and
+            <strong>Combined</strong>.
+          </p>
+
+          <p>
+            In Combined mode, classic iOS emoji and modern emoji are rendered
+            through a unified system.
+          </p>
+        </section>
+
+        <section>
+          <h2>Onegram Proxy</h2>
+
+          <p>
+            Onegram 1.2 introduces the new built-in Onegram Proxy for dealing
+            with connection slowdowns and network restrictions.
+          </p>
+
+          <ul>
+            <li>Replaces the old FuckDPI system</li>
+            <li>Runs directly inside the Onegram client</li>
+            <li>No separate FuckDPI helper or launchd daemon is required</li>
+            <li>No system-wide network configuration changes are required</li>
+            <li>Telegram connections can use a WebSocket transport</li>
+            <li>Added automatic switching between multiple WSS routes</li>
+            <li>Prevents fallback to regular direct Telegram TCP connections while enabled</li>
+            <li>Only affects Onegram and does not modify networking for other apps</li>
+            <li>Added automatic Telegram DC detection</li>
+            <li>Added support for media and file download connections</li>
+          </ul>
+
+          <p>
+            This release also includes many additional fixes for text
+            rendering, CoreText, the interface and compatibility with iOS 4–6.
+          </p>
+        </section>
+
+        <div class="release-divider"></div>
+
+        <section class="release release-old">
           <h2>Version 1.1</h2>
 
           <p>
@@ -295,12 +383,100 @@
 
         <section>
           <p class="lead">
-            Onegram неофициальный клиент Telegram, созданный для того, чтобы
+            Onegram — неофициальный клиент Telegram, созданный для того, чтобы
             вернуть современные возможности Telegram на старые устройства с iOS.
           </p>
         </section>
 
         <section class="release">
+          <h2>Версия 1.2</h2>
+
+          <p>
+            Большое обновление, посвящённое реакциям, новым способам обхода
+            блокировок, улучшенной поддержке Unicode и эмодзи, а также
+            исправлению множества проблем с интерфейсом, производительностью и
+            стабильностью. Кроме того, теперь полностью поддерживается iOS 10.
+          </p>
+
+          <ul>
+            <li>Исправлена отправка сообщений от имени групп и каналов</li>
+            <li>Исправлено отображение автора сообщений в комментариях и группах</li>
+            <li>Исправлена загрузка реакций в каналах</li>
+            <li>Исправлено обновление реакций в реальном времени</li>
+            <li>Исправлены краши при работе с реакциями</li>
+            <li>Исправлен краш из-за gesture recognizer delegate</li>
+            <li>Исправлено отображение количества непрочитанных сообщений в заглушённых чатах</li>
+            <li>Заглушённые чаты больше не учитываются в красном счётчике и badge приложения</li>
+            <li>Исправлены счётчики папок и архива для заглушённых чатов</li>
+            <li>Исправлены краши и проблемы с форумами и топиками на старых версиях iOS</li>
+            <li>Исправлены ошибки TL-парсинга современных ответов Telegram</li>
+            <li>Значительно оптимизирована работа базы данных на старых устройствах</li>
+            <li>Устранены длительные зависания при загрузке каналов и истории</li>
+            <li>Исправлены некоторые проблемы интерфейса на iPad</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Unicode и эмодзи</h2>
+
+          <p>
+            В Onegram добавлена полноценная поддержка современного Unicode и
+            эмодзи на старых версиях iOS.
+          </p>
+
+          <ul>
+            <li>Добавлена поддержка современного Unicode на iOS 4–6</li>
+            <li>Добавлены дополнительные шрифты для отсутствующих Unicode-символов</li>
+            <li>Добавлены современные эмодзи, отсутствующие в старых версиях iOS</li>
+            <li>Добавлена поддержка ZWJ-эмодзи, флагов, оттенков кожи и составных эмодзи</li>
+            <li>Исправлены квадраты вместо современных эмодзи в списке чатов</li>
+            <li>Исправлены квадраты в заголовках чатов и групп</li>
+            <li>Исправлены Unicode-символы в информации о пользователе и группе</li>
+            <li>Исправлено обрезание коротких имён в списке чатов</li>
+          </ul>
+
+          <p>
+            В оформлении добавлена настройка эмодзи с тремя режимами:
+            <strong>Stock Only</strong>, <strong>New Only</strong> и
+            <strong>Combined</strong>.
+          </p>
+
+          <p>
+            В режиме Combined старые эмодзи iOS и современные эмодзи
+            отображаются через единый механизм.
+          </p>
+        </section>
+
+        <section>
+          <h2>Onegram Proxy</h2>
+
+          <p>
+            В Onegram 1.2 появился новый встроенный Onegram Proxy для обхода
+            проблем с замедлением и сетевыми ограничениями.
+          </p>
+
+          <ul>
+            <li>Onegram Proxy заменяет старую систему FuckDPI</li>
+            <li>Работает непосредственно внутри клиента</li>
+            <li>Больше не требуется отдельный FuckDPI helper или launchd-демон</li>
+            <li>Не требуется изменение сетевых настроек всего устройства</li>
+            <li>Подключение к Telegram может выполняться через WebSocket-транспорт</li>
+            <li>Добавлено автоматическое переключение между несколькими WSS-маршрутами</li>
+            <li>При включённом Proxy клиент не переключается напрямую на обычные Telegram TCP-соединения</li>
+            <li>Proxy влияет только на Onegram и не изменяет работу других приложений</li>
+            <li>Добавлено автоматическое определение Telegram DC</li>
+            <li>Добавлена поддержка соединений для медиа и загрузки файлов</li>
+          </ul>
+
+          <p>
+            Также проведено множество исправлений рендеринга текста, CoreText,
+            интерфейса и совместимости с iOS 4–6.
+          </p>
+        </section>
+
+        <div class="release-divider"></div>
+
+        <section class="release release-old">
           <h2>Версия 1.1</h2>
 
           <p>
@@ -325,7 +501,7 @@
           <h2>Версия 1.0</h2>
 
           <p>
-            Версия 1.0 самое большое обновление Onegram на данный момент.
+            Версия 1.0 — самое большое обновление Onegram на данный момент.
             Клиент наконец дошёл до состояния, когда им можно нормально
             пользоваться на старых устройствах. Значительно улучшены
             стабильность, производительность, сообщения, медиа и совместимость.
@@ -336,7 +512,7 @@
           <h2>iOS 4</h2>
 
           <p>
-            Самая большая часть этого релиза полноценный порт Onegram на
+            Самая большая часть этого релиза — полноценный порт Onegram на
             iOS 4.3.
           </p>
 
@@ -457,13 +633,8 @@
             <li>Переработана загрузка и обработка изображений</li>
             <li>Улучшена асинхронная загрузка медиа</li>
             <li>Исправлена загрузка и обработка видео на iOS 4</li>
-            <li>
-              Улучшена стабильность медиа на устройствах с малым объёмом памяти
-            </li>
-            <li>
-              Переключение между голосовым сообщением и видеокружком теперь
-              работает
-            </li>
+            <li>Улучшена стабильность медиа на устройствах с малым объёмом памяти</li>
+            <li>Переключение между голосовым сообщением и видеокружком теперь работает</li>
           </ul>
         </section>
 
@@ -541,7 +712,7 @@ import { ref, onMounted } from 'vue'
 const language = ref('en')
 const downloadSection = ref(null)
 
-const latestVersion = ref('1.1')
+const latestVersion = ref('1.2')
 
 const downloadUrl = ref(
   'https://github.com/IllyaGIF/Onegram/releases/latest/download/Onegram.ipa'
@@ -979,9 +1150,7 @@ li {
 
   .screenshots img {
     height: min(46vh, 380px);
-
     max-width: calc(100vw - 40px);
-
     border-radius: 16px;
   }
 
@@ -1000,7 +1169,6 @@ li {
 
   .performance {
     grid-template-columns: 1fr;
-
     gap: 32px;
   }
 
