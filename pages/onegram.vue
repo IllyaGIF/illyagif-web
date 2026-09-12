@@ -50,6 +50,39 @@
         </section>
 
         <section class="release">
+          <h2>Version 1.2.1</h2>
+
+          <p>
+            A small update before the upcoming work on moving Onegram's build
+            system to Theos. This release mainly improves the start screen,
+            chat folder navigation and search behavior.
+          </p>
+
+          <ul>
+            <li>
+              Added a Onegram Proxy toggle directly to the initial screen
+            </li>
+            <li>
+              Reworked folder switching with a proper interactive swipe gesture
+            </li>
+            <li>
+              Folder pages now move together with the finger while swiping
+            </li>
+            <li>
+              Improved swipe speed and transition behavior between folders
+            </li>
+            <li>
+              Reworked chat list search behavior to match the original Telegram
+            </li>
+            <li>
+              Search now appears only after reaching the top and pulling down again
+            </li>
+          </ul>
+        </section>
+
+        <div class="release-divider"></div>
+
+        <section class="release release-old">
           <h2>Version 1.2</h2>
 
           <p>
@@ -383,12 +416,45 @@
 
         <section>
           <p class="lead">
-            Onegram — неофициальный клиент Telegram, созданный для того, чтобы
+            Onegram неофициальный клиент Telegram, созданный для того, чтобы
             вернуть современные возможности Telegram на старые устройства с iOS.
           </p>
         </section>
 
         <section class="release">
+          <h2>Версия 1.2.1</h2>
+
+          <p>
+            Небольшое обновление перед мучениями с переносом сборки Onegram на
+            Theos. В основном обновление посвящено начальному экрану,
+            переключению папок и поведению поиска.
+          </p>
+
+          <ul>
+            <li>
+              Добавлено включение Onegram Proxy прямо на начальном экране
+            </li>
+            <li>
+              Полностью переделано переключение между папками свайпом
+            </li>
+            <li>
+              Теперь список папки двигается прямо вместе с пальцем
+            </li>
+            <li>
+              Переключение между папками стало быстрее и плавнее
+            </li>
+            <li>
+              Переделано поведение поиска в списке чатов как в оригинальном Telegram
+            </li>
+            <li>
+              Поиск теперь появляется только после прокрутки до самого верха и ещё одного свайпа вниз
+            </li>
+          </ul>
+        </section>
+
+        <div class="release-divider"></div>
+
+        <section class="release release-old">
           <h2>Версия 1.2</h2>
 
           <p>
@@ -712,7 +778,7 @@ import { ref, onMounted } from 'vue'
 const language = ref('en')
 const downloadSection = ref(null)
 
-const latestVersion = ref('1.2')
+const latestVersion = ref('1.2.1')
 
 const downloadUrl = ref(
   'https://github.com/IllyaGIF/Onegram/releases/latest/download/Onegram.ipa'
@@ -773,10 +839,8 @@ useHead(() => ({
   min-height: 100vh;
   box-sizing: border-box;
   overflow-x: hidden;
-
   background: #000;
   color: #fff;
-
   padding: 128px 48px 120px;
 }
 
@@ -791,19 +855,14 @@ useHead(() => ({
   top: 28px;
   left: 32px;
   z-index: 10;
-
   margin: 0;
   padding: 0;
-
   border: 0;
   background: transparent;
-
   color: rgba(255, 255, 255, 0.55);
   font: inherit;
   font-size: 15px;
-
   cursor: pointer;
-
   transition: color 160ms ease;
 }
 
@@ -816,30 +875,22 @@ useHead(() => ({
   right: 30px;
   bottom: 30px;
   z-index: 20;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 58px;
   height: 58px;
   padding: 0;
-
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
-
   background: rgba(20, 20, 20, 0.78);
   color: #fff;
-
   font: inherit;
   font-size: 27px;
   line-height: 1;
-
   cursor: pointer;
-
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
-
   transition:
     transform 180ms ease,
     background 180ms ease,
@@ -848,7 +899,6 @@ useHead(() => ({
 
 .scroll-button:hover {
   transform: translateY(4px);
-
   background: rgba(40, 40, 40, 0.9);
   border-color: rgba(255, 255, 255, 0.32);
 }
@@ -864,7 +914,6 @@ useHead(() => ({
 
 .hero h1 {
   margin: 0;
-
   font-size: clamp(64px, 10vw, 112px);
   font-weight: 700;
   letter-spacing: -0.06em;
@@ -873,40 +922,32 @@ useHead(() => ({
 
 .version {
   margin: 24px 0 0;
-
   font-size: 18px;
   color: rgba(255, 255, 255, 0.5);
 }
 
 .screenshots {
   position: relative;
-
   width: 100vw;
   margin-left: 50%;
   margin-bottom: 110px;
-
   transform: translateX(-50%);
-
   overflow: hidden;
 }
 
 .screenshots::before,
 .screenshots::after {
   content: "";
-
   position: absolute;
   top: 0;
   bottom: 0;
   z-index: 2;
-
   width: 90px;
-
   pointer-events: none;
 }
 
 .screenshots::before {
   left: 0;
-
   background: linear-gradient(
     to right,
     #000 0%,
@@ -917,7 +958,6 @@ useHead(() => ({
 
 .screenshots::after {
   right: 0;
-
   background: linear-gradient(
     to left,
     #000 0%,
@@ -929,9 +969,7 @@ useHead(() => ({
 .screenshots-track {
   display: flex;
   width: max-content;
-
   will-change: transform;
-
   animation: screenshots-scroll 34s linear infinite;
 }
 
@@ -942,7 +980,6 @@ useHead(() => ({
 .screenshots-group {
   display: flex;
   flex-shrink: 0;
-
   gap: 18px;
   padding-right: 18px;
 }
@@ -950,14 +987,10 @@ useHead(() => ({
 .screenshots img {
   display: block;
   flex: 0 0 auto;
-
   width: auto;
   height: clamp(260px, 38vw, 430px);
-
   border-radius: 18px;
-
   object-fit: cover;
-
   transition: transform 220ms ease;
 }
 
@@ -981,7 +1014,6 @@ section {
 
 section h2 {
   margin: 0 0 32px;
-
   font-size: clamp(30px, 4vw, 42px);
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -994,9 +1026,7 @@ section h2 {
 .release-divider {
   width: 100%;
   height: 1px;
-
   margin: 8px 0 96px;
-
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -1032,16 +1062,13 @@ li {
 .performance {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-
   gap: 24px;
-
   margin: 48px 0;
 }
 
 .performance div {
   display: flex;
   flex-direction: column;
-
   gap: 8px;
 }
 
@@ -1059,7 +1086,6 @@ li {
 .download {
   display: flex;
   justify-content: center;
-
   padding-top: 72px;
   scroll-margin-top: 80px;
 }
@@ -1069,22 +1095,15 @@ li {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-height: 60px;
   padding: 0 36px;
-
   border-radius: 999px;
-
   background: #fff !important;
-
   color: #000 !important;
   -webkit-text-fill-color: #000;
-
   text-decoration: none !important;
-
   font-size: 17px;
   font-weight: 600;
-
   transition:
     transform 180ms ease,
     opacity 180ms ease;
@@ -1093,7 +1112,6 @@ li {
 .download-button:hover {
   color: #000 !important;
   -webkit-text-fill-color: #000;
-
   transform: scale(1.04);
   opacity: 0.9;
 }
@@ -1109,20 +1127,16 @@ li {
 
   .language-button {
     position: absolute;
-
     top: 24px;
     left: 24px;
-
     font-size: 14px;
   }
 
   .scroll-button {
     right: 20px;
     bottom: 20px;
-
     width: 52px;
     height: 52px;
-
     font-size: 24px;
   }
 
